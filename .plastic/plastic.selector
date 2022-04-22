@@ -1,0 +1,4 @@
+repository "Pathfinder@FrostyMo@cloud"
+  path "/"
+    br "/main"
+    co "/main"
