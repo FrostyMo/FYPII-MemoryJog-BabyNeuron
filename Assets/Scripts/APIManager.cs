@@ -33,6 +33,8 @@ public class APIManager : MonoBehaviour
 
     public static string userName;
 
+    // Make sure not to destory this class's instance
+    // It will be used to call APIs later on
     private void Awake()
     {
         if (API != null)
@@ -42,6 +44,8 @@ public class APIManager : MonoBehaviour
         DontDestroyOnLoad(API);
     }
 
+    // This time will be used to record in
+    // all api calls to save any data
     void Start()
     {
         time = Time.realtimeSinceStartup;    
@@ -82,6 +86,7 @@ public class APIManager : MonoBehaviour
         StartCoroutine(InitializeGame(gameType, gameDimension, totalLives, gameDifficulty));
     }
 
+    // Thread the initializing game API so it loads all data while game is launching
     IEnumerator InitializeGame(string gameType, string gameDimension, int totalLives, string gameDifficulty)
     {
         Debug.Log("Before1");
@@ -125,6 +130,7 @@ public class APIManager : MonoBehaviour
 
     }
 
+    // Update all the  user stats after each level ends
     public void updateStats(int gameID, int livesUsed, int totalScore, int levelsCompleted, int totalTime, int isWin)
     {
         string gameDimension;

@@ -62,6 +62,9 @@ public class GameScript : MonoBehaviour
 
     [Space(5)]
 
+
+    // These headers will show up in game
+    // whenever they are needed
     [Header("The Score texts shown on Screen")]
     [Space(5)]
     public TextMeshProUGUI HL_Text;
@@ -93,7 +96,9 @@ public class GameScript : MonoBehaviour
         //MPHighestLevel = 0;
         
         totalTiles = 0;
-        
+
+
+        // All scores are empty in the beginning
         HL_Text.text = "";
         MPHL_Text.text = "";
         points_Text.text = "";
@@ -103,6 +108,7 @@ public class GameScript : MonoBehaviour
         gameEnded = false;
     }
 
+    // Getter setters for private variables we created
     public int HL
     {
         get { return highestLevelOverall; }
@@ -130,27 +136,38 @@ public class GameScript : MonoBehaviour
         set { gameEnded = value; }
     }
 
+    // Set the text to current highestleveloverall for the user
     public void updateHL_Text()
     {
         HL_Text.text = $"Highest Level\n{highestLevelOverall}";
     }
+
+    // Set the text to current highest level out of all users
     public void updateMPHL_Text()
     {
         MPHL_Text.text = $"MP Highest Level\n{MPHighestLevel}";
     }
+
+    // Set the text to current points of user
     public void updatepoints_Text()
     {
         points_Text.text = $"Points: {score}";
     }
+
+    // Set the text to current correct tiles stepped-on of user
     public void updateTotalTiles_Text()
     {
         TotalTiles_Text.text = $"Total Tiles: {totalTiles}";
     }
+
+    // Set the text to current lives left of user
     public void updateLivesLeft_Text()
     {
         livesLeft_Text.text = $"Lives: {maxLives - livesUsed}";
     }
 
+
+    // Empty out all the text fields
     public void DisableAll()
     {
         HL_Text.text = "";
@@ -244,7 +261,7 @@ public class GameScript : MonoBehaviour
             Spawngrid.maxPathSize++;
             if (Spawngrid.maxPathSize > levelsCompleted)
             {
-                levelsCompleted = Spawngrid.maxPathSize;
+                levelsCompleted = Spawngrid.maxPathSize-1;
             }
             if (highestLevelOverall < levelsCompleted)
             {
@@ -271,7 +288,7 @@ public class GameScript : MonoBehaviour
             isWin = 0;
         }
 
-        APIManager.API.updateStats(gameID, livesUsed, score, levelsCompleted, (int)totalTime, isWin);
+        //APIManager.API.updateStats(gameID, livesUsed, score, levelsCompleted, (int)totalTime, isWin);
 
         // If the player has completed the desired path amount
         // Complete the game
@@ -340,8 +357,8 @@ public class GameScript : MonoBehaviour
     {
         
         Debug.Log(post_Corsi.text);
-        APIManager.API.submitPostCorsi(int.Parse(post_Corsi.text), false);
-        //Application.Quit();
+        //APIManager.API.submitPostCorsi(int.Parse(post_Corsi.text), false);
+        Application.Quit();
     }
 
     private void resetVariables()

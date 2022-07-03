@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+// A simple class to load a new scene
 public class LevelLoader : MonoBehaviour
 {
     public Animator transition;
@@ -10,6 +12,8 @@ public class LevelLoader : MonoBehaviour
 
     public static LevelLoader instance;
 
+
+    // Load the next level with the passed string as scene Name
     public void LoadNextLevel(string sceneName)
     {
         //StartCoroutine(LoadLevel(sceneName));
